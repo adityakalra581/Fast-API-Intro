@@ -1,3 +1,5 @@
+## Integrating FastAPI-login
+
 from fastapi import FastAPI 
 from pydantic import BaseModel
 
@@ -34,7 +36,7 @@ def index():
 #     db.append(emp.dict())
 #     return db[-1]
 
-@app.post('/cities')
+@app.post('/emp/create')
 async def create_emp(emp: EmpIn_Pydantic):
     emp_obj = await Employees.create(**emp.dict(exclude_unset=True))
     return await Emp_Pydantic.from_tortoise_orm(emp_obj)
